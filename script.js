@@ -78,7 +78,7 @@ function drawBoard() {
 
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.fillStyle = "#484848";
+    ctx.fillStyle = "#202020";
 
     for (let i = 0; i < 35; i++) {
         for (let j = 0; j < 25; j++) {      
