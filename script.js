@@ -24,8 +24,7 @@ let snakeLength = 6;
 let snakeDirection = directions.RIGHT;
 let newDirection = snakeDirection;
 
-function drawBoard() {
-
+function checkDirections() {
     switch (newDirection) {
         case directions.UP:
             if (snakeDirection != directions.DOWN) {
@@ -69,6 +68,33 @@ function drawBoard() {
     }
 
     newDirection = snakeDirection;
+}
+
+function isDead() {
+    if (snakeHead.i < 0 || snakeHead.i >= canvasWidth)
+        return true;
+    if (snakeHead.j < 0 || snakeHead.j >= canvasHeight)
+        return true;
+
+    for (let k = 0; k < snakeParts.length; k++) {
+        if (k == 0)
+            continue;
+
+        if (snakeHead.i == snakeParts[k].i && snakeHead.j == snakeParts[k].j)
+            return true;
+    }
+
+    return false;
+}
+
+function drawBoard() {
+
+    checkDirections();
+
+    let isGameActive = !isDead();
+
+    if (!isGameActive)
+        alert("Game not active!");
 
     snakeParts.push(snakeHead);
 
