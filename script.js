@@ -1,5 +1,5 @@
 let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 
 let canvasWidth = 35;
 let canvasHeight = 25;
@@ -87,14 +87,23 @@ function isDead() {
     return false;
 }
 
+let interval;
+
 function drawBoard() {
 
     checkDirections();
 
-    let isGameActive = !isDead();
+    if (isDead()) {
+        clearInterval(interval);
 
-    if (!isGameActive)
-        alert("Game not active!");
+        ctx.fillStyle = "red";
+        snakeParts.forEach(element => {
+            ctx.fillRect(element.i*22, element.j*22, 20, 20);
+        });
+
+        setTimeout(endGame, 1000);
+        return;
+    }
 
     snakeParts.push(snakeHead);
 
@@ -116,6 +125,9 @@ function drawBoard() {
     snakeParts.forEach(element => {
         ctx.fillRect(element.i*22, element.j*22, 20, 20);
     });
+
+    ctx.fillStyle = "#6be9ff";
+    ctx.fillRect(snakeHead.i*22, snakeHead.j*22, 20, 20);
 }
 
 document.addEventListener('keydown', function(event) {
@@ -149,5 +161,16 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-setInterval(drawBoard, 300);
+
+function endGame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = "italic bold 40px Arial";
+    ctx.fillStyle = "red";
+    ctx.textAlign = "center";
+    ctx.fillText("Game Over.", canvas.width/2, 200);
+}
+
+
+interval = setInterval(drawBoard, 300);
 
