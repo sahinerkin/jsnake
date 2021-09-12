@@ -8,11 +8,16 @@
     <title>JSnake</title>
 </head>
 <body>
-    <div class="canvas-div">
+    <button onclick="window.location.reload();">Refresh</button> 
+    <div>
         <canvas id="canvas" width="768" height="548">
             Your browser doesn't support canvases.
         </canvas>
-        <button onclick="window.location.reload();">Refresh</button> 
+        <p class="instructions">
+            <span style="color: #03d7fc; font: bold 20px Arial, sans-serif;">Use the arrow keys or WASD.</span>
+            <span style="color: IndianRed; font: bold 20px Arial, sans-serif;">Eat the apple.</span>
+            <span style="color: grey; font: bold 20px Arial, sans-serif;">Don't touch the walls.</span>
+        </p>
     </div>
 </body>
 <script src="script.js"></script>
