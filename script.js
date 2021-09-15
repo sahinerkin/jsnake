@@ -154,8 +154,8 @@ function drawBoard() {
 
     ctx.fillStyle = "#202020";
 
-    for (let i = 0; i < 35; i++) {
-        for (let j = 0; j < 25; j++) {      
+    for (let i = 0; i < canvasWidth; i++) {
+        for (let j = 0; j < canvasHeight; j++) {      
             ctx.fillRect(i*22, j*22, 20, 20); 
         }
     }
